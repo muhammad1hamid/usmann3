@@ -185,10 +185,7 @@ function App() {
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-6">
           Our Creative System Includes
         </h2>
-        <div className="flex flex-col items-center gap-2 mb-4">
-          <p className="text-lg md:text-xl font-semibold text-[#4DC035]">1. Explainer Video Ads</p>
-          <p className="text-lg md:text-xl font-semibold text-[#4DC035]">2. AI Ads</p>
-        </div>
+
       </div>
 
       {/* Explainer Video Ads Section */}
