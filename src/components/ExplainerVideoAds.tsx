@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -6,6 +6,10 @@ interface Video {
   id: number;
   title: string;
   videoUrl: string;
+}
+
+interface LoadedVideos {
+  [key: number]: boolean;
 }
 
 // Convert YouTube Shorts URLs to embed format
@@ -35,6 +39,20 @@ const videos: Video[] = [
 const ExplainerVideoAds: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loadedVideos, setLoadedVideos] = useState<LoadedVideos>({});
+  const [visibleRange, setVisibleRange] = useState({ start: 0, end: 2 });
+
+  useEffect(() => {
+    loadedVideos[currentIndex] = true;
+    loadedVideos[currentIndex + 1] = true;
+    loadedVideos[currentIndex - 1] = true;
+    setLoadedVideos({ ...loadedVideos });
+    setVisibleRange({ start: Math.max(0, currentIndex - 1), end: Math.min(videos.length - 1, currentIndex + 2) });
+  }, [currentIndex]);
+
+  const shouldLoadVideo = (id: number) => {
+    return loadedVideos[id] === true;
+  };
 
   const scrollCarousel = (direction: 'left' | 'right') => {
     const scrollAmount = 400;
@@ -60,16 +78,26 @@ const ExplainerVideoAds: React.FC = () => {
         <div className="md:hidden">
           <div className="mx-auto max-w-[340px]">
             <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/20 shadow-xl bg-black">
-              <iframe
-                src={videos[currentIndex]?.videoUrl}
-                width="100%"
-                height="100%"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full border-none"
-                title={videos[currentIndex]?.title || 'Explainer Video'}
-              />
+              {shouldLoadVideo(currentIndex) ? (
+                <iframe
+                  src={videos[currentIndex]?.videoUrl}
+                  width="100%"
+                  height="100%"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full border-none"
+                  title={videos[currentIndex]?.title || 'Explainer Video'}
+                  loading="lazy"
+                />
+              ) : (
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-12 h-12 border-2 border-[#4DC035]/30 border-t-[#4DC035] rounded-full animate-spin mx-auto mb-2"></div>
+                    <p className="text-gray-400 text-sm">Loading video...</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -111,16 +139,21 @@ const ExplainerVideoAds: React.FC = () => {
                 className="flex-shrink-0 w-60 md:w-72 lg:w-80"
               >
                 <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/20 shadow-xl bg-black">
-                  <iframe
-                    src={video.videoUrl}
-                    width="100%"
-                    height="100%"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className="w-full h-full border-none"
-                    title={video.title}
-                  />
+                  {shouldLoadVideo(video.id) ? (
+                    <iframe
+                      src={video.videoUrl}
+                      width="100%"
+                      height="100%"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="w-full h-full border-none"
+                      title={video.title}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
+                  )}
                 </div>
               </div>
             ))}
