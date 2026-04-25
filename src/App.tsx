@@ -8,10 +8,12 @@ import FAQSection from './components/FAQSection';
 import ExplainerVideoAds from './components/ExplainerVideoAds';
 import AIAdsSection from './components/AIAdsSection';
 import Footer from './components/Footer';
+import { useTrackLead } from './hooks';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const trackLead = useTrackLead();
 
   const navLinks = [
     { name: 'Services', href: 'services' },
@@ -79,7 +81,7 @@ function App() {
                 Portfolio
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#4DC035] to-[#4DC035] group-hover:w-full transition-all duration-300"></span>
               </Link>
-              <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" className="px-6 py-2 bg-[#4DC035]/10 border border-[#4DC035]/30 rounded-full text-[#4DC035] text-sm font-medium transition-all duration-300 hover:bg-[#4DC035] hover:text-black hover:border-transparent">
+              <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" onClick={() => trackLead()} className="px-6 py-2 bg-[#4DC035]/10 border border-[#4DC035]/30 rounded-full text-[#4DC035] text-sm font-medium transition-all duration-300 hover:bg-[#4DC035] hover:text-black hover:border-transparent">
                 Contact
               </a>
             </div>
@@ -106,7 +108,7 @@ function App() {
                 >
                   Portfolio
                 </Link>
-                <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" className="px-6 py-2 bg-[#4DC035]/10 border border-[#4DC035]/30 rounded-full text-[#4DC035] text-sm font-medium transition-all duration-300 hover:bg-[#4DC035] hover:text-black hover:border-transparent">
+                <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" onClick={() => trackLead()} className="px-6 py-2 bg-[#4DC035]/10 border border-[#4DC035]/30 rounded-full text-[#4DC035] text-sm font-medium transition-all duration-300 hover:bg-[#4DC035] hover:text-black hover:border-transparent">
                   Contact
                 </a>
               </div>
@@ -155,7 +157,7 @@ function App() {
 
           {/* CTA Button */}
           <div className="animate-fade-in-delayed-2 flex flex-col items-center gap-4">
-            <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" className="group inline-flex px-10 py-4 bg-gradient-to-r from-[#4DC035] to-[#4DC035] rounded-full text-black font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#FFD700]/30 hover:scale-105 items-center gap-3 animate-jiggle">
+            <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" onClick={() => trackLead()} className="group inline-flex px-10 py-4 bg-gradient-to-r from-[#4DC035] to-[#4DC035] rounded-full text-black font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#FFD700]/30 hover:scale-105 items-center gap-3 animate-jiggle">
               Book free strategy call
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
@@ -206,7 +208,7 @@ function App() {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
                 Ready to Scale With <span className="text-[#4DC035]">Better-Performing Ads?</span>
               </h2>
-              <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 bg-gradient-to-r from-[#4DC035] to-[#4DC035] rounded-full text-black font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#4DC035]/30 hover:scale-105">
+              <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" onClick={() => trackLead()} className="inline-block px-10 py-4 bg-gradient-to-r from-[#4DC035] to-[#4DC035] rounded-full text-black font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#4DC035]/30 hover:scale-105">
                 Book Free Strategy Call
               </a>
             </div>
@@ -234,7 +236,7 @@ function App() {
               <p className="text-white/60 text-lg mb-8 max-w-xl mx-auto">
                 Let's bring your vision to life. Book a free strategy call and see how we can grow your brand.
               </p>
-              <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 bg-gradient-to-r from-[#4DC035] to-[#4DC035] rounded-full text-black font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#4DC035]/30 hover:scale-105">
+              <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" onClick={() => trackLead()} className="inline-block px-10 py-4 bg-gradient-to-r from-[#4DC035] to-[#4DC035] rounded-full text-black font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#4DC035]/30 hover:scale-105">
                 Book free strategic call
               </a>
             </div>
