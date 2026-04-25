@@ -28,7 +28,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-end gap-4">
             {/* WhatsApp button */}
             <a
-              href="https://wa.link/tlqebd"
+              href="https://web.whatsapp.com/send?phone=923417282032"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] font-semibold transition-all duration-300 hover:bg-[#25D366] hover:text-black hover:border-transparent hover:shadow-[0_0_24px_rgba(37,211,102,0.25)]"
