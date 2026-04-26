@@ -260,7 +260,7 @@ const PortfolioPage: React.FC = () => {
                 Let's bring your vision to life. Book a free strategy call and see how we can grow your brand.
               </p>
               <a href="https://calendly.com/usman-prestigemediapk/30min" target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 bg-gradient-to-r from-[#4DC035] to-[#4DC035] rounded-full text-black font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#4DC035]/30 hover:scale-105">
-                Book free strategic call
+                Book free strategy call
               </a>
             </div>
           </div>
